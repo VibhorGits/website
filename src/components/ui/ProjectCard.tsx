@@ -57,12 +57,15 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         {/* Category Badge */}
         <div className="absolute top-4 right-4 z-20">
           <span className="px-3 py-1 text-xs font-medium bg-primary-600 text-white rounded-full capitalize shadow-lg">
-            {project.category}
+            {project.category === 'ai' ? 'AI & ML' :
+             project.category === 'fullstack' ? 'Full Stack' :
+             project.category === 'blockchain' ? 'Blockchain' :
+             project.category === 'mobile' ? 'Mobile' : project.category}
           </span>
         </div>
 
         {/* Featured Badge */}
-        {featured && (
+        {project.featured && (
           <div className="absolute top-4 left-4 z-20">
             <span className="px-3 py-1 text-xs font-medium bg-accent-600 text-white rounded-full shadow-lg">
               Featured
@@ -80,9 +83,11 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300">
-          {project.title}
-        </h3>
+        <Link href={`/projects/${project.id}`} className="block">
+          <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300 hover:underline">
+            {project.title}
+          </h3>
+        </Link>
 
         {/* Description */}
         <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed mb-4 group-hover:text-secondary-800 dark:group-hover:text-secondary-100 transition-colors duration-300">
